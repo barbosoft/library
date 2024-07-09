@@ -15,7 +15,7 @@ public class User {
     // Relationship with the acces table
     @OneToOne
     @JoinColumn(name = "cod_acceso")
-    private Access access;
+    private Acces access;
 
     public Long getId() {
         return id;
@@ -49,11 +49,11 @@ public class User {
         this.role = role;
     }
 
-    public Access getAccess() {
+    public Acces getAccess() {
         return access;
     }
 
-    public void setAccess(Access access) {
+    public void setAccess(Acces access) {
         this.access = access;
     }
 }
