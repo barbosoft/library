@@ -1,9 +1,6 @@
 package com.example.library.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class User {
@@ -16,7 +13,9 @@ public class User {
     private String role;
 
     // Relationship with the acces table
-    
+    @OneToOne
+    @JoinColumn(name = "cod_acceso")
+    private Access access;
 
     public Long getId() {
         return id;
@@ -50,4 +49,11 @@ public class User {
         this.role = role;
     }
 
+    public Access getAccess() {
+        return access;
+    }
+
+    public void setAccess(Access access) {
+        this.access = access;
+    }
 }
