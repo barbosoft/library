@@ -1,7 +1,7 @@
 package com.example.library.controllers;
 
+import com.example.library.models.User;
 import com.example.library.services.UserService;
-import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -28,5 +28,5 @@ public class AuthController {
         return userService.login(user);
 
     }
-    
+
 }
