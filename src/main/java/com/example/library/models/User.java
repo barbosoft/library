@@ -1,21 +1,44 @@
 package com.example.library.models;
 
 import javax.persistence.*;
+import java.util.Collection;
+import java.util.List;
 
 @Entity
+@Table(name = "users")  // Cambiado de "user" a "users" para evitar conflicto con la palabra reservada
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String username;
+    private String name;
+    private String lastName;
+    private String email;
     private String password;
-    private String role;
+
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "users_roles",
+            joinColumns = @JoinColumn(
+                    name = "cod_user",
+                    referencedColumnName = "id"),
+                    inverseJoinColumns = @JoinColumn(
+                            name = "cod_rol",
+                            referencedColumnName = "id"
+                    )
+    )
+    private Collection<Rol> roles;
+
+    public <T> User(String name, String lastName, String email, String password, List<T> list) {
+    }
 
     // Relationship with the acces table
-    @OneToOne
-    @JoinColumn(name = "cod_acceso")
-    private Acces access;
+    //@OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    /*@ManyToOne (cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
+    @JoinColumn(name = "cod_acces")
+    private Acces acces;*/
+
 
     public Long getId() {
         return id;
@@ -41,19 +64,58 @@ public class User {
         this.password = password;
     }
 
-    public String getRole() {
-        return role;
+    public Collection<Rol> getRoles() {
+        return roles;
     }
 
-    public void setRole(String role) {
-        this.role = role;
+    public void setRoles(Collection<Rol> roles) {
+        this.roles = roles;
     }
 
-    public Acces getAccess() {
-        return access;
+    public String getName() {
+        return name;
     }
 
-    public void setAccess(Acces access) {
-        this.access = access;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public User(Long id, String username, String name, String lastName, String email, String password, Collection<Rol> roles) {
+        this.id = id;
+        this.username = username;
+        this.name = name;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+        this.roles = roles;
+    }
+
+    public User(String username, String name, String lastName, String email, String password, Collection<Rol> roles) {
+        this.username = username;
+        this.name = name;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+        this.roles = roles;
+    }
+
+    public User() {
+        super();
     }
 }

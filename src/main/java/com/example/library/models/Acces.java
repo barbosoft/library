@@ -1,10 +1,12 @@
 package com.example.library.models;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Acces {
 
+    //private Long id;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -13,8 +15,11 @@ public class Acces {
     private boolean update;
     private boolean delete;
 
-    @OneToOne(mappedBy = "acces")
-    private User user;
+   // @OneToOne
+   // @JoinColumn(name = "user_id")
+   // private User user;
+    //@OneToMany(mappedBy = "acces", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
+    //private List<User> users;
 
     public Long getId() {
         return id;
@@ -56,11 +61,11 @@ public class Acces {
         this.delete = delete;
     }
 
-    public User getUser() {
-        return user;
+    /*public List<User> getUsers() {
+        return users;
     }
 
-    public void setUser(User user) {
-        this.user = user;
-    }
+    public void setUsers(List<User> users) {
+        this.users = users;
+    }*/
 }

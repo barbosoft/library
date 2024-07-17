@@ -2,6 +2,7 @@ package com.example.library.models;
 
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -12,8 +13,8 @@ public class Theme {
     private Long id;
     private String name;
 
-    @OneToMany(mappedBy = "theme")
-    private List<Theme> themes;
+    @OneToMany(mappedBy = "theme", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
+    private List<Book> books; ;
 
     public Long getId() {
         return id;
@@ -31,11 +32,11 @@ public class Theme {
         this.name = name;
     }
 
-    public List<Theme> getThemes() {
-        return themes;
+    public List<Book> getBooks() {
+        return books;
     }
 
-    public void setThemes(List<Theme> themes) {
-        this.themes = themes;
+    public void setBooks(List<Book> books) {
+        this.books = books;
     }
 }

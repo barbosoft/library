@@ -12,7 +12,7 @@ public class Language {
     private String name;
     private String initials;
 
-    @OneToMany(mappedBy = "language")
+    @OneToMany(mappedBy = "language", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
     private List<Book> books;
 
     public Long getId() {

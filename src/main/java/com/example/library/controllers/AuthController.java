@@ -3,6 +3,7 @@ package com.example.library.controllers;
 import com.example.library.models.User;
 import com.example.library.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,7 +16,7 @@ public class AuthController {
     @Autowired
     private UserService userService;
 
-    @PostMapping("/register")
+    /*@PostMapping("/register")
     public User register(@RequestBody User user) {
 
         return userService.register(user);
@@ -27,6 +28,6 @@ public class AuthController {
 
         return userService.login(user);
 
-    }
+    }*/
 
 }

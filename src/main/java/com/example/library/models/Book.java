@@ -18,20 +18,20 @@ public class Book {
     private String year;
     private String sypnopsis;
 
-    @ManyToOne
+    @ManyToOne (cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
     @JoinColumn(name = "cod_editorial")
     private Editorial editorial;
 
-    @ManyToOne
-    @JoinColumn(name = "cod_autor")
+    @ManyToOne (cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
+    @JoinColumn(name = "cod_author")
     private Author author;
 
-    @ManyToOne
-    @JoinColumn(name = "cod_tema")
+    @ManyToOne (cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
+    @JoinColumn(name = "cod_theme")
     private Theme theme;
 
-    @ManyToOne
-    @JoinColumn(name = "cod_idioma")
+    @ManyToOne (cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
+    @JoinColumn(name = "cod_language")
     private Language language;
 
     public Long getId() {

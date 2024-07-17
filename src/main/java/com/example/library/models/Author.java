@@ -11,7 +11,7 @@ public class Author {
     private Long id;
     private String name;
 
-    @OneToMany(mappedBy = "author")
+    @OneToMany(mappedBy = "author", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
     private List<Book> books;
 
     public Long getId() {

@@ -11,7 +11,7 @@ public class Editorial {
     private Long id;
     private String name;
 
-    @OneToMany(mappedBy = "editorial")
+    @OneToMany(mappedBy = "editorial", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
     private List<Book> books;
 
     public Long getId() {
